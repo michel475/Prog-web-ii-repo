@@ -1,5 +1,6 @@
 import { dynamicUtils, inspectorUtils, processarReajusteUniversal } from "./index";
 import { ItemTerceiros } from "./ItemTerceiros";
+import { isAplicavelDesconto, isPrecificavel } from "./Precificavel";
 import { Produto } from "./Produto";
 import { RelatorioLog } from "./RelatorioLog";
 
@@ -11,7 +12,7 @@ inspectorUtils.imprimirInspecao({attr, metodos, className});
 
 const atr = "preco";
 const metodo = "aplicarDesconto";
-
+console.log("\n")
 //Test Case 2
 const args = [50]
 dynamicUtils.alterarAtributo(newProd, atr, 500.00);
@@ -20,6 +21,8 @@ dynamicUtils.invocarMetodo(newProd, metodo, args);
 console.log(atr.toUpperCase(),"do Z Phone apos método invocarMetodo: ",newProd[atr]);
 
 
+
+//Testando métodos search e impressão individual
 const produto = new Produto("Notebook", 5000, "Eletrônicos");
 const itemTerceiros = new ItemTerceiros(400, "Distribuidora XYZ");
 const relatorioLog = new RelatorioLog("2026-08-25", "Sistema iniciado");
@@ -44,16 +47,29 @@ processarReajusteUniversal(itemTerceiros, 8);
 console.log("Valor reajustado:",itemTerceiros[atr]);
 
 
+//Teste Case isPrecificavel e isAplicavelDesconto
+//Caminho Infeliz
+console.log("\nTestando em",inspectorUtils.getClassNameOf(relatorioLog))
+console.log("isPrecificavel?",isPrecificavel(relatorioLog))
+console.log("isAplicavelDesconto?",isAplicavelDesconto(relatorioLog));
+console.log("\n");
+//Caminho Feliz
+console.log("Testando em",inspectorUtils.getClassNameOf(produto), "e",inspectorUtils.getClassNameOf(itemTerceiros));
+console.log("isPrecificavel?",isPrecificavel(produto))
+console.log("isAplicavelDesconto?",isAplicavelDesconto(itemTerceiros));
+
+console.log("\n")
+inspectorUtils.getCaracteristicas(produto)
+console.log("\n")
+inspectorUtils.getCaracteristicas(relatorioLog)
+console.log("\n")
+inspectorUtils.getCaracteristicas(itemTerceiros);
+console.log("\n")
 
 // console.log("Antigo valor no atributo", atributoAlterar, ":", itemT.fornecedor)
-// dynamicUtils.alterarAtributo(itemT, "fornecedor", "NVidia");
-// console.log("Atributo", atributoAlterar, "alterado com sucesso para:", itemT.fornecedor);
-// console.log("Antigo valor no atributo", metodoAInvocar, ":", prod[atributoAlterar])
-// dynamicUtils.invocarMetodo(prod, "aplicarDesconto", [50])
-// processarReajusteUniversal(itemT, 5);
-// console.log("Atributo preco alterado com sucesso para:", prod[atributoAlterar]);
-// // const metodos = inspectorUtils.searchMetodos(itemT);
-// // const atr = inspectorUtils.searchAtributos(itemT);
-// // const nome = inspectorUtils.getClassNameOf(itemT);
-// const itens = { attr, metodos, className }
-// inspectorUtils.imprimirInspecao(itens);
+dynamicUtils.alterarAtributo(itemTerceiros, "fornecedor", "NVidia");
+dynamicUtils.alterarAtributo(produto, "titulo", "Pista Hotwheels do Tubarão");
+
+console.log("\n");
+console.log(itemTerceiros.fornecedor);
+console.log(produto.titulo);
