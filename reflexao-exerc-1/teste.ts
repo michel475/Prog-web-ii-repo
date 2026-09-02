@@ -71,5 +71,5 @@ dynamicUtils.alterarAtributo(itemTerceiros, "fornecedor", "NVidia");
 dynamicUtils.alterarAtributo(produto, "titulo", "Pista Hotwheels do Tubarão");
 
 console.log("\n");
-console.log(itemTerceiros.fornecedor);
-console.log(produto.titulo);
+inspectorUtils.getCaracteristicas(itemTerceiros);
+inspectorUtils.getCaracteristicas(produto)
