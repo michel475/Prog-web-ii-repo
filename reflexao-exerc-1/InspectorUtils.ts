@@ -31,6 +31,13 @@ export class InspectorUtils {
         console.log(joinedItens);
     }
 
+    getCaracteristicas(obj: any) {
+        const atributos = this.searchAtributos(obj);
+        atributos.forEach(atr => {
+            console.log(atr, '-', obj[atr]);
+        })
+    }
+
     imprimirInspecao(itens: { attr: string[], metodos: string[], className: string }): void {
         console.log("=== Introspecção do Objeto ===")
         console.log("Classe:", itens.className);
