@@ -4,7 +4,6 @@ export class DynamicUtils {
     alterarAtributo(obj: any, nomeAtributo:string, novoValor:any):boolean {
         if(nomeAtributo in obj) {
             obj[nomeAtributo] = novoValor
-            console.log(`Valor na propriedade ${nomeAtributo} alterado com sucesso`);
             return true;
         }
         else{
@@ -13,18 +12,17 @@ export class DynamicUtils {
         }
     }
 
-    invocarMetodo(obj: any, nomeMetodo: string, args: any[]) {
+    invocarMetodo(obj: any, nomeMetodo: string, args: any[]): boolean {
         const prototype = Object.getPrototypeOf(obj);
         const metodos = Object.getOwnPropertyNames(prototype)
         const metodo = metodos.filter(met => met === nomeMetodo)
-        console.log(metodo)
         if(metodo) {
             (obj as any)[nomeMetodo](args);
-            console.log(obj.preco)
+            return true;
         }
         if(!metodos) {
             console.log("Método não encontrado no objeto");
-            return undefined;
         }
+        return false
     }
 }
