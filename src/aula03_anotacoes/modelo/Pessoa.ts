@@ -33,6 +33,10 @@ export class Pessoa extends SuperTabela<number> {
         return this.nome;
     }
 
+    public getIdade(): number {
+        return this.idade;
+    }
+
     public setNome(nome: string): void {
         this.nome = nome;
     }
